@@ -1,29 +1,20 @@
-<!-- x-layout コンポーネントは、ページ全体の共通レイアウトを適用します。
-     これにより、全てのページで一貫したデザインや構造を保持することができます。 -->
-<x-layout>
+<x-layout> <!-- LaravelのBladeコンポーネントを使用してレイアウトを適用します -->
 
-
-    <h1>Hello Laravel!</h1>
-
-      <!-- ul タグでリストの開始を宣言しています。このリストには$post変数から取り出された
-         各投稿へのリンクが含まれます。 -->
+    <h1>
+        <span>Hello Laravel!</span>
+        <a href="{{ route('create.posts') }}">新規追加</a> <!--  'create.posts' に-->
+       <div class= "search" >
+        <a href="{{ route('search.posts') }}">検索</a> <!-- 'search.posts' ルートに -->
+       </div>
+    </h1>
             <ul>
 
-                <!--＠フォーイーチ  ディレクティブは Laravel のテンプレートエンジンBladeによって提供されており、
-             配列の各要素をループしてそれぞれの要素に対する処理を実行できます。 -->
-                @foreach ($posts as $key=> $post)
+                @foreach ($posts as $post) <!-- $posts配列の各要素（$post）に対してループを実行 -->
                      <li>
-
-                         <!-- a タグを使って、各投稿へのリンクを生成しています。
-                     ‘route’ ヘルパー関数は、指定されたルート名とパラメータからURLを生成します。
-                     ここでは 'text.posts' がルート名で、$key がそのパラメータです。 -->
-                       <a href="{{ route('text.posts',$key)}}">{{ $post }}</a>
+                       <a href="{{ route('text.posts', $post->id)}}"> <!-- 各投稿のタイトルをリンクとして表示し、 'text.posts' に。リンクは各投稿のIDをパラメータとして使用 -->
+                       {{ $post->title }}</a> <!-- 投稿のタイトルを表示 -->
                     </li>
-                @endforeach
-                @foreach ($collection as $item)
+                @endforeach <!-- ループ終了 -->
 
-                @endforeach
             </ul>
-</x-layout>
-
-
+</x-layout> <!-- レイアウト終了 -->

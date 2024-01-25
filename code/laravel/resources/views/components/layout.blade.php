@@ -9,8 +9,10 @@
     </head>
     <body>
         <div class="container">
-            
+
            {{ $slot }}
+          <!-- Bladeテンプレートのスロット（挿入ポイント）を表示します。ここには、別のBladeテンプレートから渡されたコンテンツが表示されます。 -->
+
         </div>
     </body>
 </html>
