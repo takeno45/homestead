@@ -51,6 +51,8 @@ Route::delete('/posts/{id}/destroy', [PostController::class,'destroy'])
     ->where('id','[0-9]+');
 
 
+
+    
 //ここからsearch追加
 
 // GETリクエストの '/posts/search' URLにアクセスがあった時に PostController の search メソッドを呼び出します。

@@ -72,6 +72,7 @@ class PostController extends Controller
         return redirect()->route('index.posts'); // 'redirect()->route('index.posts')は、'index.posts'ルート（投稿一覧ページ）にリダイレクトします。これにより、投稿を削除した後、自動的に投稿一覧ページに遷移します。
     }
 
+    
     //ここからsearch追加
     public function search(Request $request){ // 'search'メソッドを定義しています。これは、投稿を検索するためのメソッドです。'Request $request'パラメータは、検索のリクエストデータを受け取ります。
         $posts = null; // '$posts'変数をnullで初期化します。これは、検索結果を格納するための変数です。
@@ -81,7 +82,7 @@ class PostController extends Controller
         }
 
         return view('posts.search')->with(['posts' => $posts, 'query' => $query]);// 'view'関数を使用して、'posts.search'ビューを返しています。また、'with'メソッドを使用して、ビューに'posts'変数と'query'変数を渡しています。これにより、ビュー内で'posts'変数と'query'変数を使用して検索結果を表示することができます。
-    
+
     }
 
 }
