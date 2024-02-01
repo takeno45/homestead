@@ -1,3 +1,4 @@
+{{-- 共通部分　　<x-layout> --}}
 <!DOCTYPE html>
 <html lang="ja">
     <head>
@@ -9,7 +10,7 @@
     </head>
     <body>
         <div class="container">
-            
+
            {{ $slot }}
         </div>
     </body>

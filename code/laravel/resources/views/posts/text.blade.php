@@ -1,20 +1,17 @@
-{{--
-  x-layoutという名前で定義されたBladeコンポーネントを利用しています。
-  これにより、ページ全体のレイアウトがこのコンポーネントに指定された構造とスタイリングに従います。
---}}
+
 <x-layout>
 
-  {{--
-      'route' ヘルパー関数を使用して、名前付きルート 'index.posts' へのURLを生成し、
-      そのURLをアンカータグのhref属性として設定しています。
-      "戻る"テキストのリンクをクリックすると、渡されたルートにリダイレクトします。
-    --}}
-<a href="{{ route('index.posts')}}" class="re">戻る</a>
 
-    {{--
-      投稿の内容を表示している {{ $post }} には、PostControllerから渡された$post変数の値が出力されます。
-      この場合は、投稿のタイトルやテキストなどが表示されることになります。
-    --}}
-            <h1>{{ $post }}</h1>
+<a href="{{ route('index.posts')}}" class="re">戻る</a>
+    <h1>
+        <span>{{ $post->title }}</span>
+        <a href="{{ route('edit.posts', $post->id) }}">編集</a>
+        <form action="{{ route('destroy.posts', $post->id) }}" method="post">
+            @method('DELETE')
+            @csrf
+            <button>削除</button>
+        </form>
+    </h1>
+    <p>{{ $post->detail }}</p>
 </x-layout>
 

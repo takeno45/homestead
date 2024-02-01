@@ -1,41 +1,72 @@
 <?php
-
-// App\Http\Controllers 名前空間の指定。
-// これによりこのファイルがコントローラーに関連していることがわかります。
 namespace App\Http\Controllers;
 
-
-// Illuminate\Http\Request クラスをインポート。
-// Laravel のリクエスト（HTTPリクエスト）を取り扱うためのクラスです。
 use Illuminate\Http\Request;
-
-// Controller 基底クラスを継承した PostController クラス。
-// MVCのControllerに相当する部分で、アプリケーションのロジックを司ります。
+use App\Models\Post;
+use App\Http\Requests\PostRequest;
 class PostController extends Controller
 {
-
-    // Private変数$postsに項目を用意。
-    // ここではモデル、ビュー、コントローラーの各要素を示す文字列が格納されています。
-    private $posts= [
-
-        'Model',
-        'View',
-        'controller',
-    ];
-
-     // indexメソッド。これはルーティングで指定されたアクションの一つとして機能します。
-    // インデックスページにアクセスがあった際に呼ばれ、postsビューを返します。
     public function index(){
-           // 'index' ビューを返し、ビューに 'posts' 変数を渡しています。
-        return view('index')->with(['posts' => $this->posts]);
+        // $posts = Post::all();
+        // $posts = Post::orderBy('created_at','desc')->get();
+        $posts = Post::latest()->get();
+
+        return view('index')->with(['posts' => $posts]);
     }
 
-       // textメソッド。投稿のテキスト内容を表示するページ用のメソッドです。
-    // $id パラメータを受け取り、そのIDに応じた投稿内容をビューに渡す。
     public function text($id){
+        $post = Post::findOrfail($id);
 
-         // 'posts.text' ビューを返し、特定のIDに対応する 'post' 変数を持たせます。
-        // $this->posts[$id] で、指定されたIDの投稿を$posts配列から取得しています。
-        return view('posts.text')->with(['post' => $this->posts[$id]]);
+        return view('posts.text')->with(['post' => $post]);
     }
+
+    public function create() {
+        return view('posts.create');
+    }
+
+    public function store(PostRequest $request) {
+        $post = new Post();
+        $post->title =$request->title;
+        $post->detail =$request->detail;
+        $post->save();
+
+        return redirect()->route('index.posts');
+
+    }
+
+
+    public function edit($id){
+        $post = Post::findOrfail($id);
+
+        return view('posts.edit')->with(['post' => $post]);  //posts.textではなく、posts.editに修正
+    }
+
+    public function update(PostRequest $request, $id) {
+        $post = Post::findOrfail($id);
+        $post->title =$request->title;
+        $post->detail =$request->detail;
+        $post->save();
+
+        return redirect()->route('text.posts',$post->id);
+
+    }
+    public function destroy($id){
+        $post = Post::findOrfail($id);
+        $post->delete();
+
+        return redirect()->route('index.posts');
+    }
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $posts = collect();
+
+        if (!empty($query)) {
+            $posts = Post::where('title', 'like', "%{$query}%")->get();
+        }
+
+        return view('search')->with(['posts' => $posts]);
+    }
+
+
 }
