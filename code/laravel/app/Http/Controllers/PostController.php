@@ -70,3 +70,23 @@ class PostController extends Controller
 
 
 }
+
+// このコードは、Laravelフレームワークを使用したPHPのPostControllerクラスを定義しています。このクラスは、ブログ投稿の表示、作成、編集、削除などの操作を処理します。
+
+// public function index(){ ... }：このメソッドは、すべてのブログ投稿を取得し、それらをindexビューに渡して表示します。
+
+// public function text($id){ ... }：このメソッドは、指定されたIDのブログ投稿を取得し、それをtextビューに渡して表示します。
+
+// public function create() { ... }：このメソッドは、新しいブログ投稿を作成するためのフォームを表示するcreateビューを返します。
+
+// public function store(PostRequest $request) { ... }：このメソッドは、新しいブログ投稿をデータベースに保存します。保存が完了したら、ユーザーをブログ投稿の一覧ページにリダイレクトします。
+
+// public function edit($id){ ... }：このメソッドは、指定されたIDのブログ投稿を編集するためのフォームを表示するeditビューを返します。
+
+// public function update(PostRequest $request, $id) { ... }：このメソッドは、指定されたIDのブログ投稿を更新します。更新が完了したら、ユーザーをそのブログ投稿の詳細ページにリダイレクトします。
+
+// public function destroy($id){ ... }：このメソッドは、指定されたIDのブログ投稿を削除します。削除が完了したら、ユーザーをブログ投稿の一覧ページにリダイレクトします。
+
+// public function search(Request $request){ ... }：このメソッドは、ユーザーが入力したクエリに基づいてブログ投稿を検索し、結果をsearchビューに渡して表示します。
+
+// 以上のように、このPostControllerクラスは、ブログ投稿の表示、作成、編集、削除、検索といった操作を処理するためのメソッドを提供します。これにより、ユーザーがブログ投稿を閲覧したり、新しい投稿を作成したり、既存の投稿を編集したり、投稿を削除したり、投稿を検索したりすることができます。
