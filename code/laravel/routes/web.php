@@ -8,58 +8,77 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 
+use App\Http\Controllers\CommentController;
+use App\Models\Comment;
 
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+
+*/
 
 
 Route::get('/', [PostController::class,'index'])
     ->name('index.posts');
 
-
-// GETリクエストの '/posts/{id}' URLにアクセスがあった時に PostController の text メソッドを呼び出します。
-// {id} はURLの一部として動的なパラメータを表し、投稿のIDとして機能します。
-// このルートには 'text.posts' という名前が付いており、リンク作成などで便利に使用できます。
 Route::get('/posts/{id}', [PostController::class,'text'])
-    ->name('text.posts')
-    ->where('id','[0-9]+');
 
-// GETリクエストの '/posts/create' URLにアクセスがあった時に PostController の create メソッドを呼び出します。
-// このルートには 'create.posts' という名前が付いており、リンク作成などで便利に使用できます。
+->name('text.posts')
+->where('id','[0-9]+');
+
 Route::get('/posts/create', [PostController::class,'create'])
 ->name('create.posts');
 
-// POSTリクエストの '/posts/store' URLにアクセスがあった時に PostController の store メソッドを呼び出します。
-// このルートには 'store.posts' という名前が付いており、リンク作成などで便利に使用できます。
 Route::post('/posts/store', [PostController::class,'store'])
 ->name('store.posts');
 
-// GETリクエストの '/posts/{id}/edit' URLにアクセスがあった時に PostController の edit メソッドを呼び出します。
-// このルートには 'edit.posts' という名前が付いており、リンク作成などで便利に使用できます。
 Route::get('/posts/{id}/edit', [PostController::class,'edit'])
-    ->name('edit.posts')
-    ->where('id','[0-9]+');
+->name('edit.posts')
+->where('id','[0-9]+');
 
-// PATCHリクエストの '/posts/{id}/update' URLにアクセスがあった時に PostController の update メソッドを呼び出します。
-// このルートには 'update.posts' という名前が付いており、リンク作成などで便利に使用できます。
- Route::patch('/posts/{id}/update', [PostController::class,'update'])
-    ->name('update.posts')
-    ->where('id','[0-9]+');
+Route::patch('/posts/{id}/update', [PostController::class,'update'])
+->name('update.posts')
+->where('id','[0-9]+');
 
-// DELETEリクエストの '/posts/{id}/destroy' URLにアクセスがあった時に PostController の destroy メソッドを呼び出します。
-// このルートには 'destroy.posts' という名前が付いており、リンク作成などで便利に使用できます。
 Route::delete('/posts/{id}/destroy', [PostController::class,'destroy'])
-    ->name('destroy.posts')
-    ->where('id','[0-9]+');
+->name('destroy.posts')
+->where('id','[0-9]+');
+
+Route::get('/posts/search', [PostController::class,'search'])->name('search.posts');
+
+Route::post('/posts/{id}/comments', [CommentController::class,'store'])
+->name('store.comments')
+->where('id','[0-9]+');
 
 
+Route::delete('/comments/{comment}/destroy', [CommentController::class,'destroy'])
+->name('destroy.comments')
+->where('comment','[0-9]+');
 
-    
-//ここからsearch追加
+// このコードは、Laravelフレームワークを使用したWebアプリケーションのルーティングを定義しています。具体的には、URLパスとそれに対応するコントローラのアクション（メソッド）をマッピングしています。
 
-// GETリクエストの '/posts/search' URLにアクセスがあった時に PostController の search メソッドを呼び出します。
-// このルートには 'search.posts' という名前が付いており、リンク作成などで便利に使用できます。
-Route::get('/posts/search', [PostController::class,'search'])
-    ->name('search.posts');
+// 以下に、各ルートの詳細を説明します：
 
- // POSTリクエストの '/posts/search' URLにアクセスがあった時に PostController の search メソッドを呼び出します。
-// このルートには 'search.posts' という名前が付いており、リンク作成などで便利に使用できます。
-Route::post('/posts/search', [PostController::class,'search'])->name('search.posts');
+// Route::get('/', [PostController::class,'index'])->name('index.posts');：ホームページ（/）にアクセスしたときに、PostControllerのindexメソッドを呼び出します。このルートの名前はindex.postsです。
+
+// Route::get('/posts/{id}', [PostController::class,'text'])->name('text.posts')->where('id','[0-9]+');：/posts/{id}にアクセスしたときに、PostControllerのtextメソッドを呼び出します。ここで、{id}は投稿のIDを表します。このルートの名前はtext.postsです。
+
+// Route::get('/posts/create', [PostController::class,'create'])->name('create.posts');：/posts/createにアクセスしたときに、PostControllerのcreateメソッドを呼び出します。このルートの名前はcreate.postsです。
+
+// Route::post('/posts/store', [PostController::class,'store'])->name('store.posts');：/posts/storeにPOSTリクエストを送信したときに、PostControllerのstoreメソッドを呼び出します。このルートの名前はstore.postsです。
+
+// Route::get('/posts/{id}/edit', [PostController::class,'edit'])->name('edit.posts')->where('id','[0-9]+');：/posts/{id}/editにアクセスしたときに、PostControllerのeditメソッドを呼び出します。ここで、{id}は投稿のIDを表します。このルートの名前はedit.postsです。
+
+// Route::patch('/posts/{id}/update', [PostController::class,'update'])->name('update.posts')->where('id','[0-9]+');：/posts/{id}/updateにPATCHリクエストを送信したときに、PostControllerのupdateメソッドを呼び出します。ここで、{id}は投稿のIDを表します。このルートの名前はupdate.postsです。
+
+// Route::delete('/posts/{id}/destroy', [PostController::class,'destroy'])->name('destroy.posts')->where('id','[0-9]+');：/posts/{id}/destroyにDELETEリクエストを送信したときに、PostControllerのdestroyメソッドを呼び出します。ここで、{id}は投稿のIDを表します。このルートの名前はdestroy.postsです。
+
+// Route::get('/posts/search', [PostController::class,'search'])->name('search.posts');：/posts/searchにアクセスしたときに、PostControllerのsearchメソッドを呼び出します。このルートの名前はsearch.postsです。
+
+// Route::post('/posts/{id}/comments', [CommentController::class,'store'])->name('store.comments')->where('id','[0-9]+');：/posts/{id}/commentsにPOSTリクエストを送信したときに、CommentControllerのstoreメソッドを呼び出します。ここで、{id}は投稿のIDを表します。このルートの名前はstore.commentsです。
+
+// Route::delete('/comments/{comment}/destroy', [CommentController::class,'destroy'])->name('destroy.comments')->where('comment','[0-9]+');：/comments/{comment}/destroyにDELETEリクエストを送信したときに、CommentControllerのdestroyメソッドを呼び出します。ここで、{comment}はコメントのIDを表します。このルートの名前はdestroy.commentsです。
+
+// 以上のように、このコードはWebアプリケーションの各ページとそれに対応する処理を定義しています。これにより、ユーザーが特定のURLにアクセスしたときや、特定のリクエストを送信したときに、適切な処理が行われるようになります。

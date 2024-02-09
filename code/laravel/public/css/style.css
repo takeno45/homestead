@@ -7,6 +7,11 @@ h1 {
     align-items: center;
 }
 
+.no-border {
+    border-bottom: none !important;
+
+}
+
 li {
     margin-bottom:  10px;
 }
@@ -19,7 +24,9 @@ li {
     font-size: 14px;
  }
 
-h1 > a {
+
+ h1 > a {
+
     font-size: 12px;
     background-color: aqua;
     border: 1px solid;
@@ -27,51 +34,61 @@ h1 > a {
     padding: 3px 10px;
     margin-left: auto;
     text-decoration: none;
-}
 
-input, textarea {
+ }
+
+ input,textarea {
+
     width: 100%;
     padding: 5px;
     margin-bottom: 10px;
     box-sizing: border-box;
-}
 
-.btn {
+ }
+
+ .btn {
     text-align: right;
-}
+ }
 
-.error {
-    color:red;
+ .error {
+    color: red;
     font-size: 14px;
     margin-bottom: 10px;
 
-}
-
-button {
+ }
+ button {
     margin-left: 10px;
     vertical-align: 2px;
-}
+ }
 
-.search {
+ .search {
+
     font-size: 12px;
     background-color: orange;
     border: 1px solid;
     border-radius: 3px;
     padding: 3px 10px;
-    text-decoration: none;
+
     margin-left: 10px;
+    text-decoration: none;
 }
 
-.btn_search {
- text-align: right;
-}
+h2
+ {
+    font-size: 18px;
+    margin-top: 50px;
+ }
 
-.search_span{
-    font-size: 20px;
-    font-weight: bold;
-    margin-top: 10px;
-}
-li > a {
-    font-size: 14px;
+ .comment {
+    display: flex;
+ }
 
-}
+ .comment button {
+    width: 90px;
+    height: 30px;
+ }
+
+ .dele {
+    display: inline-block;
+ }
+

@@ -1,27 +1,46 @@
-{{-- 新規追加ページ --}}
+
 <x-layout>
-  <a href="{{ route('index.posts')}}" class="re">戻る</a>
-  <h1>新規追加</h1>
-  <form action="{{ route('store.posts')}}" method="post">  <!-- 'route('store.posts')'で新規投稿を保存するためのルート（URL）を生成しています。'method'属性には、HTTPメソッド（ここでは'post'）を指定します。 -->
-    @csrf
+    <a href="{{ route('index.posts')}}" class="re">戻る</a>
+    <h1>新規追加</h1>
+    <form action="{{ route('store.posts')}}" method="post">
+        @csrf
 
-    <label>
-       Title
-       <input type="text" name="title" value="{{old('title') }}">   <!-- 'input'タグで、テキスト入力フィールドを作成します。'name'属性には、フィールド名（ここでは'title'）を指定します。'value'属性には、フィールドの初期値を指定します。前回の入力値を表示しています。 -->
-    </label>
-    @error('title')  <!--バリデーションエラーメッセージを表示します。'title'は、バリデーションエラーをチェックするフィールド名を指定します。 -->
-        <div class="error">{{ $message }}</div> <!-- '{{ $message }}'で、バリデーションエラーメッセージを表示します。 -->
-    @enderror
-    <label>
-        Detail
-        <textarea name="detail"  rows="10">{{old('detail') }}</textarea>  <!-- 'textarea'タグで、テキストエリアを作成します。'name'属性には、フィールド名（ここでは'detail'）を指定します。前回の入力値を表示しています。 -->
-    </label>
-     @error('detail')   <!-- バリデーションエラーメッセージを表示します。'detail'は、バリデーションエラーをチェックするフィールド名を指定します。 -->
-         <div class="error">{{ $message }}</div> <!-- '{{ $message }}'で、バリデーションエラーメッセージを表示します。 -->
-     @enderror
-     <div class="btn"><button>新規追加</button></div>
-   </form>
+        <label>
+            Title
+            <input type="text" name="title" value="{{ old('title') }}">
+        </label>
+        @error('title')
+        <div class="error">{{ $message}}</div>
+        @enderror
+        <label>
+            Detail
+            <textarea name="detail"  rows="10">{{ old('detail') }}</textarea>
+        </label>
+        @error('detail')
+            <div class="error">{{ $message }}</div>
+        @enderror
+        <div class="btn"><button>新規追加</button></div>
+    </form>
+</x-layout>
 
 
- </x-layout>
+{{-- このコードは、Laravelフレームワークを使用したブログ投稿の新規作成フォームを表示するためのBladeテンプレートです。具体的には、以下の機能が含まれています： --}}
+
+{{-- 戻るリンク：<a href="{{ route('index.posts')}}" class="re">戻る</a>は、ブログの一覧ページへのリンクを提供します。 --}}
+
+{{-- フォームの開始：<form action="{{ route('store.posts')}}" method="post">は、新しいブログ投稿を作成するためのフォームを開始します。このフォームは、POSTメソッドでstore.postsルート（PostControllerのstoreメソッド）にデータを送信します。 --}}
+
+{{-- CSRFトークン：@csrfは、Cross-Site Request Forgery（CSRF）攻撃から保護するためのトークンを生成します。 --}}
+
+{{-- タイトルフィールド：<input type="text" name="title" value="{{ old('title') }}">は、新しいブログ投稿のタイトルを入力するためのテキストフィールドです。{{ old('title') }}は、前回のリクエストで入力されたタイトルの値を保持します。 --}}
+
+{{-- タイトルのバリデーションエラー：@error('title') ... @enderrorは、タイトルフィールドのバリデーションエラーがある場合にエラーメッセージを表示します。 --}}
+
+{{-- 詳細フィールド：<textarea name="detail"  rows="10">{{ old('detail') }}</textarea>は、新しいブログ投稿の詳細を入力するためのテキストエリアです。{{ old('detail') }}は、前回のリクエストで入力された詳細の値を保持します。 --}}
+
+{{-- 詳細のバリデーションエラー：@error('detail') ... @enderrorは、詳細フィールドのバリデーションエラーがある場合にエラーメッセージを表示します。 --}}
+
+{{-- 送信ボタン：<button>新規追加</button>は、フォームのデータを送信するためのボタンです。 --}}
+
+{{-- 以上のように、このコードは新しいブログ投稿を作成するためのフォームを表示し、ユーザーが入力したデータのバリデーションエラーを表示する機能を提供します。 --}}
 
