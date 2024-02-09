@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Models; //名前空間 APPの中のModelsに入っているという意味
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -35,3 +36,5 @@ class Post extends Model
 // public function comments(){ return $this->hasMany(Comment::class); }：commentsメソッドは、PostモデルがCommentモデルと「一対多」の関係にあることを定義しています。つまり、一つのポストに対して複数のコメントが存在するという関係です。
 
 // 以上のように、このコードはLaravelのモデルクラスを定義し、データベースのpostsテーブルと対応するPostモデルを作成するためのものです。このモデルを通じて、postsテーブルのレコードを取得、挿入、更新、削除することができます。また、他のモデルとのリレーションシップも定義できます。このコードはLaravelのモデルクラスを定義し、データベースのpostsテーブルと対応するPostモデルを作成するためのものです。このモデルを通じて、postsテーブルのレコードを取得、挿入、更新、削除することができます。また、他のモデルとのリレーションシップも定義できます。
+
+

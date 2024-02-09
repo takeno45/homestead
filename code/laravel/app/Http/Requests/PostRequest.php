@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
@@ -12,9 +13,11 @@ class PostRequest extends FormRequest
      * @return bool
      */
     public function authorize()
+
     {
         return true;
     }
+
 
     /**
      * Get the validation rules that apply to the request.
@@ -22,6 +25,7 @@ class PostRequest extends FormRequest
      * @return array
      */
     public function rules()
+
     {
         return [
             'title' => 'required',
@@ -29,11 +33,13 @@ class PostRequest extends FormRequest
         ];
     }
 
+
     public function messages(){
         return [
             'title.required' => 'タイトルは必須です',
             'detail.required' => '詳細は必須です',
         ];
+
 
     }
 }

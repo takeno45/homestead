@@ -1,3 +1,4 @@
+<!-- コントローラー -->
 <?php
 
 
@@ -6,6 +7,7 @@
 // これによって、Laravelのルーティング機能と、PostControllerクラスが使用できるようになります。
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+
 use App\Http\Controllers\CommentController;
 use App\Models\Comment;
 
@@ -17,10 +19,12 @@ use App\Models\Comment;
 
 */
 
+
 Route::get('/', [PostController::class,'index'])
     ->name('index.posts');
 
 Route::get('/posts/{id}', [PostController::class,'text'])
+
 ->name('text.posts')
 ->where('id','[0-9]+');
 

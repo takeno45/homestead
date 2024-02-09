@@ -20,6 +20,7 @@
             <form class="comment" action="{{ route('store.comments', $post->id) }}" method="post">
                 @csrf
 
+
                 <input type="text" name="body">
                 <button>コメント</button>
             </form>
@@ -36,6 +37,7 @@
             </li>
         @endforeach
     </ul>
+
 </x-layout>
 
 {{-- このコードは、Laravelフレームワークを使用したブログ投稿の詳細ページを表示するためのBladeテンプレートです。具体的には、以下の機能が含まれています： --}}
